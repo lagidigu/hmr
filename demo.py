@@ -35,6 +35,7 @@ from src.RunModel import RunModel
 import pandas as pd 
 import os
 import glob
+import time
 
 flags.DEFINE_string('img_path', 'data/im1963.jpg', 'Image to run')
 flags.DEFINE_string(
@@ -185,8 +186,11 @@ def main(img_path, json_path=None):
 #     import cv2
 #     rotations = [cv2.Rodrigues(aa)[0] for aa in pose.reshape(-1, 3)]
 #     print('ROTATIONS:', rotations)
-    
+    print('join csv time start')
+    print (time.time())
     visualize(img_path, img, proc_param, joints[0], verts[0], cams[0])
+    print('join csv time end')
+    print( time.time() )
 
 def join_csv():
   path = 'hmr/output/csv/'                   
