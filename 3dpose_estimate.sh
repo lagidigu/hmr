@@ -11,5 +11,5 @@ for f in keras_Realtime_Multi-Person_Pose_Estimation/sample_images/*; do
                     #  --json_path keras_Realtime_Multi-Person_Pose_Estimation/sample_jsons/$no_ext.json  
   
 done
-python hmr/zipfile.py
+python hmr/zipfiles.py
 echo "Done"
