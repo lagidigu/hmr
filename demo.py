@@ -121,11 +121,11 @@ def preprocess_image(img_path, json_path=None):
     return crop, proc_param, img
 
 
-def main(img_path, json_path=None):
+def main(img_path):
     sess = tf.Session()
     model = RunModel(config, sess=sess)
-
-    input_img, proc_param, img = preprocess_image(img_path, json_path)
+    input_img = io.imread(img_path)
+    # input_img, proc_param, img = preprocess_image(img_path, json_path)
     # Add batch dimension: 1 x D x D x 3
     input_img = np.expand_dims(input_img, 0)
 
@@ -186,11 +186,11 @@ def main(img_path, json_path=None):
 #     import cv2
 #     rotations = [cv2.Rodrigues(aa)[0] for aa in pose.reshape(-1, 3)]
 #     print('ROTATIONS:', rotations)
-    print('join csv time start')
-    print (time.time())
-    visualize(img_path, img, proc_param, joints[0], verts[0], cams[0])
-    print('join csv time end')
-    print( time.time() )
+    # print('join csv time start')
+    # print (time.time())
+    # visualize(img_path, img, proc_param, joints[0], verts[0], cams[0])
+    # print('join csv time end')
+    # print( time.time() )
 
 def join_csv():
   path = 'hmr/output/csv/'                   
@@ -210,10 +210,10 @@ if __name__ == '__main__':
 
     config.batch_size = 1
 
-    renderer = vis_util.SMPLRenderer(face_path=config.smpl_face_path)
+    # renderer = vis_util.SMPLRenderer(face_path=config.smpl_face_path)
 
-    main(config.img_path, config.json_path)
+    main(config.img_path)
     
-    join_csv()
+    # join_csv()
     
     print('\nResult is in hmr/output (you can open images in Colaboratory by double-clicking them)')
